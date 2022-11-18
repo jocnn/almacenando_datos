@@ -5,9 +5,9 @@
 		e.preventDefault()
 		const inputTask = document.querySelector("[data-form-input-task]")
 		const calendar = document.querySelector("[data-form-date]")
-		console.log(calendar)
 		const date = calendar.value
-		console.log(date)
+		const dateformat = moment(date).format("MMMM Do YYYY, HH:mm:ss")
+		console.log(dateformat)
 		const valueInput = inputTask.value
 		inputTask.value = ""
 		const list = document.querySelector("[data-list]")
