@@ -29,8 +29,16 @@
 		// se agregó el span al div
 		taskContent.appendChild(titleTask)
 
+		// se creo el span
+		const dateElement = document.createElement("span")
+		// se agrego la fecha al span
+		dateElement.innerHTML = dateformat
+
 		// se agregó la tarea al elemento li
 		task.appendChild(taskContent)
+
+		// se agrego la fecha al elemento li
+		task.appendChild(dateElement)
 
 		// se agregó el icono de basura al div
 		task.appendChild(deleteCourse())
