@@ -1,6 +1,13 @@
 ;(() => {
 	const btnAdd = document.querySelector("[data-form-btn-add]")
 
+	const addTask = (e) => {
+		const list = document.querySelector("[data-list]")
+		const task = createTask(e)
+		// se agregó el elemento li a la lista (ul) data-list
+		list.appendChild(task)
+	}
+
 	const createTask = (e) => {
 		e.preventDefault()
 		const inputTask = document.querySelector("[data-form-input-task]")
@@ -10,7 +17,6 @@
 		console.log(dateformat)
 		const valueInput = inputTask.value
 		inputTask.value = ""
-		const list = document.querySelector("[data-list]")
 		const task = document.createElement("li")
 		task.classList.add("card")
 
@@ -43,11 +49,10 @@
 		// se agregó el icono de basura al div
 		task.appendChild(deleteCourse())
 
-		// se agregó el elemento li a la lista (ul) data-list
-		list.appendChild(task)
+		return task
 	}
 
-	btnAdd.addEventListener("click", createTask)
+	btnAdd.addEventListener("click", addTask)
 
 	const checkComplete = () => {
 		const i = document.createElement("i")
