@@ -1,6 +1,8 @@
 ;(() => {
 	const btnAdd = document.querySelector("[data-form-btn-add]")
 
+	const taskList = []
+
 	const addTask = (e) => {
 		const list = document.querySelector("[data-list]")
 		const task = createTask(e)
@@ -48,6 +50,13 @@
 
 		// se agregó el icono de basura al div
 		task.appendChild(deleteCourse())
+
+		taskObj = {
+			valueInput,
+			dateformat
+		}
+		taskList.push(taskObj)
+		sessionStorage.setItem("tasks", JSON.stringify(taskList))
 
 		return task
 	}
