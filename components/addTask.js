@@ -1,7 +1,6 @@
 import checkComplete from "./checkComplete.js"
 import deleteCourse from "./deleteIcon.js"
 
-const taskList = []
 
 export const addTask = (e) => {
 	const list = document.querySelector("[data-list]")
@@ -12,6 +11,9 @@ export const addTask = (e) => {
 
 const createTask = (e) => {
 	e.preventDefault()
+
+	const taskList = JSON.parse(sessionStorage.getItem("tasks")) || []
+
 	const inputTask = document.querySelector("[data-form-input-task]")
 	const calendar = document.querySelector("[data-form-date]")
 	const date = calendar.value
