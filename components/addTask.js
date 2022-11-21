@@ -1,26 +1,38 @@
 import checkComplete from "./checkComplete.js"
 import deleteCourse from "./deleteIcon.js"
 
-
 export const addTask = (e) => {
+	e.preventDefault()
+
 	const list = document.querySelector("[data-list]")
-	const task = createTask(e)
+	const inputTask = document.querySelector("[data-form-input-task]")
+	const calendar = document.querySelector("[data-form-date]")
+
+	const taskList = JSON.parse(sessionStorage.getItem("tasks")) || []
+
+	const inputDate = calendar.value
+	const valueInput = inputTask.value
+	const dateformat = moment(inputDate).format("MMMM Do YYYY, HH:mm:ss")
+
+	console.log(dateformat)
+	inputTask.value = ""
+	calendar.value = ""
+
+	const taskObj = {
+		valueInput,
+		dateformat,
+	}
+
+	taskList.push({ valueInput, dateformat })
+	sessionStorage.setItem("tasks", JSON.stringify(taskList))
+
+	const task = createTask(taskObj)
+
 	// se agregó el elemento li a la lista (ul) data-list
 	list.appendChild(task)
 }
 
-const createTask = (e) => {
-	e.preventDefault()
-
-	const taskList = JSON.parse(sessionStorage.getItem("tasks")) || []
-
-	const inputTask = document.querySelector("[data-form-input-task]")
-	const calendar = document.querySelector("[data-form-date]")
-	const date = calendar.value
-	const dateformat = moment(date).format("MMMM Do YYYY, HH:mm:ss")
-	console.log(dateformat)
-	const valueInput = inputTask.value
-	inputTask.value = ""
+const createTask = ({ valueInput, dateformat }) => {
 	const task = document.createElement("li")
 	task.classList.add("card")
 
@@ -52,13 +64,6 @@ const createTask = (e) => {
 
 	// se agregó el icono de basura al div
 	task.appendChild(deleteCourse())
-
-	const taskObj = {
-		valueInput,
-		dateformat,
-	}
-	taskList.push(taskObj)
-	sessionStorage.setItem("tasks", JSON.stringify(taskList))
 
 	return task
 }
