@@ -14,7 +14,8 @@ export const addTask = (e) => {
 	const valueInput = inputTask.value
 	const dateformat = moment(inputDate).format("MMMM Do YYYY, HH:mm:ss")
 
-	console.log(dateformat)
+	if (valueInput === "" || inputDate === "") return
+
 	inputTask.value = ""
 	calendar.value = ""
 
