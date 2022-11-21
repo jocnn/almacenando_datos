@@ -1,12 +1,12 @@
 import { createTask } from "./addTask.js"
 import dateElement from "./dateElement.js"
-import { uniqueDates } from "../services/date.js"
+import { uniqueDates, orderDates } from "../services/date.js"
 
 export const readTasks = () => {
 	const tasksList = JSON.parse(sessionStorage.getItem("tasks")) || []
-
 	const list = document.querySelector("[data-list]")
 	const dates = uniqueDates(tasksList)
+	orderDates(dates)
 
 	dates.forEach(date => {
 		const dateMoment = moment(date, "MMMM Do YYYY")
