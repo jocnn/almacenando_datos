@@ -1,5 +1,6 @@
 import checkComplete from "./checkComplete.js"
 import deleteCourse from "./deleteIcon.js"
+import { readTasks } from "./readTasks.js"
 
 export const addTask = (e) => {
 	e.preventDefault()
@@ -24,13 +25,12 @@ export const addTask = (e) => {
 		dateFormat,
 	}
 
-	taskList.push({ valueInput, dateFormat })
+	list.innerHTML = ""
+
+	taskList.push(taskObj)
 	sessionStorage.setItem("tasks", JSON.stringify(taskList))
 
-	const task = createTask(taskObj)
-
-	// se agregó el elemento li a la lista (ul) data-list
-	list.appendChild(task)
+	readTasks()
 }
 
 export const createTask = ({ valueInput, dateFormat }) => {
