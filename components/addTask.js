@@ -32,7 +32,7 @@ export const addTask = (e) => {
 	list.appendChild(task)
 }
 
-const createTask = ({ valueInput, dateformat }) => {
+export const createTask = ({ valueInput, dateformat }) => {
 	const task = document.createElement("li")
 	task.classList.add("card")
 
