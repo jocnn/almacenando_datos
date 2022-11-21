@@ -12,7 +12,7 @@ export const addTask = (e) => {
 
 	const inputDate = calendar.value
 	const valueInput = inputTask.value
-	const dateformat = moment(inputDate).format("MMMM Do YYYY, HH:mm:ss")
+	const dateFormat = moment(inputDate).format("MMMM Do YYYY, HH:mm:ss")
 
 	if (valueInput === "" || inputDate === "") return
 
@@ -21,10 +21,10 @@ export const addTask = (e) => {
 
 	const taskObj = {
 		valueInput,
-		dateformat,
+		dateFormat,
 	}
 
-	taskList.push({ valueInput, dateformat })
+	taskList.push({ valueInput, dateFormat })
 	sessionStorage.setItem("tasks", JSON.stringify(taskList))
 
 	const task = createTask(taskObj)
@@ -33,7 +33,7 @@ export const addTask = (e) => {
 	list.appendChild(task)
 }
 
-export const createTask = ({ valueInput, dateformat }) => {
+export const createTask = ({ valueInput, dateFormat }) => {
 	const task = document.createElement("li")
 	task.classList.add("card")
 
@@ -55,7 +55,7 @@ export const createTask = ({ valueInput, dateformat }) => {
 	// se creo el span
 	const dateElement = document.createElement("span")
 	// se agrego la fecha al span
-	dateElement.innerHTML = dateformat
+	dateElement.innerHTML = dateFormat
 
 	// se agregó la tarea al elemento li
 	task.appendChild(taskContent)
