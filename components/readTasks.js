@@ -1,6 +1,6 @@
 import { createTask } from "./addTask.js"
 import dateElement from "./dateElement.js"
-import { uniqueDates } from "../services/data.js"
+import { uniqueDates } from "../services/date.js"
 
 export const readTasks = () => {
 	const tasksList = JSON.parse(sessionStorage.getItem("tasks")) || []
