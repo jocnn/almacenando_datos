@@ -5,6 +5,7 @@ import { readTasks } from "./readTasks.js"
 export const addTask = (e) => {
 	e.preventDefault()
 
+	const complete = false
 	const list = document.querySelector("[data-list]")
 	const inputTask = document.querySelector("[data-form-input-task]")
 	const calendar = document.querySelector("[data-form-date]")
@@ -21,8 +22,10 @@ export const addTask = (e) => {
 	calendar.value = ""
 
 	const taskObj = {
+		id: uuid.v4(),
+		complete,
 		valueInput,
-		dateFormat,
+		dateFormat
 	}
 
 	list.innerHTML = ""
@@ -33,14 +36,21 @@ export const addTask = (e) => {
 	readTasks()
 }
 
-export const createTask = ({ valueInput, dateFormat }) => {
+export const createTask = ({ id, valueInput, dateFormat, complete }) => {
+	const check = checkComplete(id)
 	const task = document.createElement("li")
 	task.classList.add("card")
 
 	// se creó el div
 	const taskContent = document.createElement("div")
 	// se agrego el icon checklist al div
-	taskContent.appendChild(checkComplete())
+	taskContent.appendChild(check)
+
+	if (complete) {
+		check.classList.toggle("fas")
+		check.classList.toggle("completeIcon")
+		check.classList.toggle("far")
+	}
 
 	// se creó el span
 	const titleTask = document.createElement("span")
