@@ -74,7 +74,7 @@ export const createTask = ({ id, valueInput, dateFormat, complete }) => {
 	task.appendChild(dateElement)
 
 	// se agregó el icono de basura al div
-	task.appendChild(deleteCourse())
+	task.appendChild(deleteCourse(id))
 
 	return task
 }
